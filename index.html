@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2f7d4f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<title>แคลของฉัน</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f6ee;--sf:#fff;--tx:#1b2a22;--mut:#6c7b72;--ln:#dfe6d9;--leaf:#2f7d4f;--leaf2:#d9ecdd;--sun:#ff6b35;--aq:#2b7fff;--aq2:#dce9ff;--over:#e5484d;
+--fd:'Prompt','IBM Plex Sans Thai',system-ui,sans-serif;--fb:'IBM Plex Sans Thai',system-ui,sans-serif}
+@media(prefers-color-scheme:dark){:root{--bg:#101612;--sf:#19221c;--tx:#e9f1ea;--mut:#8da294;--ln:#273329;--leaf:#4fbf7d;--leaf2:#17301f;--aq:#5b9cff;--aq2:#142540}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--tx);font:400 16px/1.5 var(--fb)}
+body{padding:env(safe-area-inset-top) 0 calc(76px + env(safe-area-inset-bottom))}
+main{max-width:520px;margin:0 auto;padding:18px 18px 8px}
+[hidden]{display:none!important}
+h1,h2{font-family:var(--fd);margin:0;font-weight:600}
+h1{font-size:22px}h2{font-size:17px;margin:26px 0 10px}
+.sub{color:var(--mut);font-size:14px}
+.num{font-family:var(--fd);font-weight:600;letter-spacing:-.02em}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+:focus-visible{outline:3px solid var(--aq);outline-offset:2px}
+/* ring */
+.hero{display:flex;align-items:center;gap:20px;margin:14px 0 4px}
+.ring{position:relative;width:170px;height:170px;flex:none}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring .c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring .c b{font-size:38px;line-height:1}
+.ring .c span{font-size:13px;color:var(--mut)}
+.hero .side{flex:1;display:grid;gap:12px}
+.hero .side b{display:block;font-size:20px;line-height:1.1}
+.hero .side span{font-size:13px;color:var(--mut)}
+/* scan */
+.scan{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin:18px 0 6px;padding:16px;border-radius:18px;background:var(--sun);color:#fff;font:600 18px var(--fd);cursor:pointer;box-shadow:0 6px 18px rgba(255,107,53,.28)}
+.scan:active{transform:scale(.98)}
+.link{display:block;margin:2px auto 0;color:var(--mut);font-size:14px;text-decoration:underline;padding:6px}
+/* water */
+.water{background:var(--aq2);border-radius:18px;padding:16px}
+.water .row{display:flex;justify-content:space-between;align-items:baseline}
+.water .num{font-size:26px;color:var(--aq)}
+.bar{height:12px;border-radius:9px;background:rgba(43,127,255,.18);overflow:hidden;margin:10px 0 14px}
+.bar i{display:block;height:100%;background:var(--aq);border-radius:9px;transition:width .4s}
+.btns{display:flex;gap:8px}
+.btns button{flex:1;padding:11px 0;border-radius:12px;background:var(--sf);color:var(--aq);font-weight:600}
+.btns button.u{flex:none;padding:11px 14px;color:var(--mut)}
+/* list */
+.meal{display:flex;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid var(--ln)}
+.meal .t{font-size:12px;color:var(--mut);width:42px;flex:none}
+.meal .n{flex:1;min-width:0}
+.meal .n div{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.meal .k{font-family:var(--fd);font-weight:600}
+.meal .x{color:var(--mut);font-size:20px;padding:4px 8px}
+.empty{color:var(--mut);padding:18px 0;text-align:center}
+/* week */
+.chart{position:relative;height:150px;display:flex;align-items:flex-end;gap:8px;margin:26px 0 8px;border-bottom:1px solid var(--ln)}
+.chart .col{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;position:relative}
+.chart .bv{width:100%;max-width:34px;border-radius:8px 8px 0 0;background:var(--leaf);min-height:2px}
+.chart .bv.o{background:var(--over)}.chart .bv.w{background:var(--aq)}
+.chart .v{font-size:11px;color:var(--mut);margin-bottom:3px}
+.gl{position:absolute;left:0;right:0;border-top:2px dashed var(--sun);pointer-events:none}
+.gl em{position:absolute;right:0;top:-19px;font-size:11px;font-style:normal;color:var(--sun)}
+.lbl{display:flex;gap:8px}.lbl span{flex:1;text-align:center;font-size:13px;color:var(--mut)}
+.lbl span.td{color:var(--tx);font-weight:600}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--ln);border-radius:16px;overflow:hidden;margin-top:12px}
+.stats div{background:var(--sf);padding:14px}
+.stats b{display:block;font-size:24px;line-height:1.2}
+.stats span{font-size:13px;color:var(--mut)}
+/* settings */
+label{display:block;margin:16px 0 6px;font-weight:500;font-size:15px}
+input[type=text],input[type=password],input[type=number]{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--ln);background:var(--sf)}
+.hint{font-size:13px;color:var(--mut);margin-top:5px}
+.hint a{color:var(--leaf)}
+.btn{padding:13px 18px;border-radius:14px;background:var(--leaf);color:#fff;font-weight:600;width:100%;margin-top:16px}
+.btn.g{background:var(--sf);color:var(--tx);border:1px solid var(--ln)}
+/* nav */
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--sf);border-top:1px solid var(--ln);padding-bottom:env(safe-area-inset-bottom)}
+nav button{flex:1;padding:11px 0 9px;color:var(--mut);font-size:12px;display:flex;flex-direction:column;align-items:center;gap:2px}
+nav button svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+nav button.on{color:var(--leaf);font-weight:600}
+/* sheet */
+.sheet{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:flex-end;z-index:9}
+.sheet>div{background:var(--bg);width:100%;max-width:520px;margin:0 auto;border-radius:24px 24px 0 0;padding:20px 18px calc(20px + env(safe-area-inset-bottom));max-height:92vh;overflow:auto;animation:up .22s ease-out}
+@keyframes up{from{transform:translateY(40px);opacity:0}}
+@media(prefers-reduced-motion:reduce){.sheet>div{animation:none}.bar i{transition:none}}
+.sheet img{width:100%;max-height:230px;object-fit:cover;border-radius:16px;margin:12px 0}
+.it{display:grid;grid-template-columns:1fr 84px 28px;gap:8px;margin-bottom:8px;align-items:center}
+.it small{grid-column:1/-1;color:var(--mut);font-size:12px;margin-top:-4px}
+.tot{display:flex;justify-content:space-between;align-items:baseline;margin:14px 0 2px}
+.tot .num{font-size:30px;color:var(--leaf)}
+.spin{width:34px;height:34px;border:4px solid var(--ln);border-top-color:var(--sun);border-radius:50%;animation:s 1s linear infinite;margin:26px auto 10px}
+@keyframes s{to{transform:rotate(360deg)}}
+#toast{position:fixed;left:50%;bottom:calc(92px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:10px 16px;border-radius:12px;font-size:14px;z-index:20;max-width:90%}
+</style>
+</head>
+<body>
+<main id="v-today"></main>
+<main id="v-week" hidden></main>
+<main id="v-set" hidden></main>
+<nav>
+ <button data-v="today" class="on"><svg viewBox="0 0 24 24"><path d="M12 3v9m-4-9v5a4 4 0 0 0 8 0V3M12 12v9"/></svg>วันนี้</button>
+ <button data-v="week"><svg viewBox="0 0 24 24"><path d="M4 20V10m6 10V4m6 16v-7m4 7H2"/></svg>สัปดาห์</button>
+ <button data-v="set"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2m0-14-2 2M7 17l-2 2"/></svg>ตั้งค่า</button>
+</nav>
+<input type="file" id="file" accept="image/*" capture="environment" hidden>
+<div class="sheet" id="sheet" hidden></div>
+<div id="toast" hidden></div>
+<script>
+const $=s=>document.querySelector(s),K='calapp.v1',TH=['อา','จ','อ','พ','พฤ','ศ','ส'];
+const DEF={meals:[],water:[],goal:2000,wgoal:2000,key:'',model:'gemini-2.5-flash'};
+let S=(()=>{try{return Object.assign({},DEF,JSON.parse(localStorage.getItem(K)||'{}'))}catch(e){return{...DEF}}})();
+const save=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){toast('บันทึกไม่สำเร็จ')}};
+const pad=n=>String(n).padStart(2,'0'),dk=t=>{const d=new Date(t);return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmt=n=>Math.round(n).toLocaleString('th-TH');
+const mealsOf=k=>S.meals.filter(m=>dk(m.ts)===k),waterOf=k=>S.water.filter(w=>dk(w.ts)===k).reduce((a,w)=>a+w.ml,0);
+const sumK=a=>a.reduce((s,m)=>s+m.kcal,0);
+function toast(t){const e=$('#toast');e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,2600)}
+function go(v){['today','week','set'].forEach(x=>$('#v-'+x).hidden=x!==v);document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));({today:rToday,week:rWeek,set:rSet})[v]();scrollTo(0,0)}
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>go(b.dataset.v));
+
+/* ---------- วันนี้ ---------- */
+function rToday(){
+ const k=dk(Date.now()),ms=mealsOf(k).sort((a,b)=>a.ts-b.ts),kc=sumK(ms),w=waterOf(k);
+ const p=kc/S.goal,left=S.goal-kc,C=2*Math.PI*70,col=p>1?'var(--over)':'var(--leaf)';
+ const d=new Date();
+ $('#v-today').innerHTML=`
+ <h1>วัน${['อาทิตย์','จันทร์','อังคาร','พุธ','พฤหัสบดี','ศุกร์','เสาร์'][d.getDay()]}</h1>
+ <div class="sub">${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()+543}</div>
+ <div class="hero">
+  <div class="ring"><svg viewBox="0 0 170 170"><circle cx="85" cy="85" r="70" fill="none" stroke="var(--leaf2)" stroke-width="16"/><circle cx="85" cy="85" r="70" fill="none" stroke="${col}" stroke-width="16" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-Math.min(p,1))}" style="transition:stroke-dashoffset .6s"/></svg>
+  <div class="c"><b class="num">${fmt(kc)}</b><span>จาก ${fmt(S.goal)} kcal</span></div></div>
+  <div class="side"><div><b class="num" style="color:${left<0?'var(--over)':'inherit'}">${fmt(Math.abs(left))}</b><span>${left<0?'เกินเป้าหมาย':'kcal ที่เหลือ'}</span></div>
+  <div><b class="num">${ms.length}</b><span>มื้อที่บันทึก</span></div></div>
+ </div>
+ <label class="scan" for="file"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>ถ่ายรูปอาหาร</label>
+ <button class="link" id="manual">หรือเพิ่มเอง</button>
+ <h2>น้ำดื่ม</h2>
+ <div class="water"><div class="row"><span class="num">${fmt(w)} <small style="font-size:14px">มล.</small></span><span class="sub">เป้าหมาย ${fmt(S.wgoal)}</span></div>
+  <div class="bar"><i style="width:${Math.min(100,w/S.wgoal*100)}%"></i></div>
+  <div class="btns"><button data-w="150">+150</button><button data-w="250">+250</button><button data-w="500">+500</button><button class="u" data-w="-1" aria-label="ยกเลิกล่าสุด">↶</button></div></div>
+ <h2>มื้อวันนี้</h2>
+ ${ms.length?ms.map(m=>`<div class="meal"><span class="t">${pad(new Date(m.ts).getHours())}:${pad(new Date(m.ts).getMinutes())}</span><div class="n"><div>${esc(m.name)}</div></div><span class="k">${fmt(m.kcal)}</span><button class="x" data-d="${m.id}" aria-label="ลบ">×</button></div>`).join(''):'<div class="empty">ยังไม่มีมื้อ ถ่ายรูปอาหารเพื่อเริ่มบันทึก</div>'}`;
+ $('#manual').onclick=()=>{cur={img:null,items:[{name:'',kcal:0}]};sheet('res')};
+ document.querySelectorAll('[data-w]').forEach(b=>b.onclick=()=>{const v=+b.dataset.w;if(v<0){const i=S.water.map(x=>dk(x.ts)).lastIndexOf(dk(Date.now()));if(i>=0)S.water.splice(i,1)}else S.water.push({ts:Date.now(),ml:v});save();rToday()});
+ document.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{if(confirm('ลบมื้อนี้?')){S.meals=S.meals.filter(m=>m.id!=b.dataset.d);save();rToday()}});
+}
+
+/* ---------- สัปดาห์ ---------- */
+function rWeek(){
+ const days=[];for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);const k=dk(d),ms=mealsOf(k);days.push({l:TH[d.getDay()],kc:sumK(ms),n:ms.length,w:waterOf(k),t:i==0})}
+ const used=days.filter(d=>d.n>0),avg=used.length?sumK(used)/used.length:0,ok=used.filter(d=>d.kc<=S.goal).length;
+ const wd=days.filter(d=>d.w>0),wavg=wd.length?wd.reduce((s,d)=>s+d.w,0)/wd.length:0;
+ const mk=(key,goal,cls)=>{const mx=Math.max(goal*1.15,...days.map(d=>d[key]));return`<div class="chart"><div class="gl" style="bottom:${goal/mx*100}%"><em>เป้า ${fmt(goal)}</em></div>${days.map(d=>`<div class="col"><span class="v">${d[key]?fmt(d[key]):''}</span><div class="bv ${cls||(d[key]>goal?'o':'')}" style="height:${d[key]/mx*100*.86}%"></div></div>`).join('')}</div><div class="lbl">${days.map(d=>`<span class="${d.t?'td':''}">${d.l}</span>`).join('')}</div>`};
+ $('#v-week').innerHTML=`<h1>7 วันที่ผ่านมา</h1><div class="sub">แคลอรี่ต่อวัน</div>${mk('kc',S.goal)}
+ <div class="stats"><div><b class="num">${fmt(avg)}</b><span>kcal เฉลี่ย/วัน</span></div><div><b class="num">${used.length?ok+'/'+used.length:'–'}</b><span>วันที่ไม่เกินเป้า</span></div><div><b class="num">${fmt(sumK(used))}</b><span>kcal รวม 7 วัน</span></div><div><b class="num">${used.length?fmt(sumK(used)/Math.max(1,used.reduce((s,d)=>s+d.n,0))):'–'}</b><span>kcal เฉลี่ย/มื้อ</span></div></div>
+ <h2>น้ำดื่ม</h2><div class="sub">มล. ต่อวัน</div>${mk('w',S.wgoal,'w')}
+ <div class="stats"><div><b class="num" style="color:var(--aq)">${fmt(wavg)}</b><span>มล. เฉลี่ย/วัน</span></div><div><b class="num" style="color:var(--aq)">${days.filter(d=>d.w>=S.wgoal).length}/7</b><span>วันที่ถึงเป้า</span></div></div>`;
+}
+
+/* ---------- ตั้งค่า ---------- */
+function rSet(){
+ $('#v-set').innerHTML=`<h1>ตั้งค่า</h1>
+ <label for="s-key">Gemini API key</label><input id="s-key" type="password" value="${esc(S.key)}" autocomplete="off" placeholder="วางคีย์ที่นี่">
+ <div class="hint">สมัครฟรีที่ <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a> คีย์เก็บในเครื่องนี้เท่านั้น</div>
+ <label for="s-model">โมเดล</label><input id="s-model" type="text" value="${esc(S.model)}">
+ <div class="hint">ถ้าขึ้น error ว่าไม่พบโมเดล ให้เปลี่ยนเป็นชื่อรุ่น flash ล่าสุดใน AI Studio</div>
+ <label for="s-goal">เป้าหมายแคลอรี่ต่อวัน (kcal)</label><input id="s-goal" type="number" inputmode="numeric" value="${S.goal}">
+ <label for="s-wg">เป้าหมายน้ำต่อวัน (มล.)</label><input id="s-wg" type="number" inputmode="numeric" value="${S.wgoal}">
+ <button class="btn" id="s-save">บันทึกการตั้งค่า</button>
+ <button class="btn g" id="s-exp">ดาวน์โหลดข้อมูลสำรอง</button>
+ <button class="btn g" id="s-clr" style="color:var(--over)">ลบข้อมูลทั้งหมด</button>`;
+ $('#s-save').onclick=()=>{S.key=$('#s-key').value.trim();S.model=$('#s-model').value.trim()||DEF.model;S.goal=+$('#s-goal').value||2000;S.wgoal=+$('#s-wg').value||2000;save();toast('บันทึกแล้ว')};
+ $('#s-exp').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify({meals:S.meals,water:S.water},null,1)],{type:'application/json'}));a.download='cal-backup.json';a.click()};
+ $('#s-clr').onclick=()=>{if(confirm('ลบมื้อและน้ำทั้งหมด? กู้คืนไม่ได้')){S.meals=[];S.water=[];save();toast('ลบแล้ว')}};
+}
+
+/* ---------- ถ่ายรูป + AI ---------- */
+let cur=null;
+$('#file').onchange=async e=>{const f=e.target.files[0];e.target.value='';if(!f)return;
+ if(!S.key){toast('ใส่ API key ในตั้งค่าก่อน');go('set');return}
+ try{cur={img:await shrink(f),items:null};sheet('pre')}catch(x){toast('เปิดรูปไม่ได้')}};
+function shrink(f){return new Promise((ok,no)=>{const im=new Image(),u=URL.createObjectURL(f);im.onload=()=>{const r=Math.min(1,1024/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*r;c.height=im.height*r;c.getContext('2d').drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);ok(c.toDataURL('image/jpeg',.82))};im.onerror=no;im.src=u})}
+function close(){$('#sheet').hidden=true}
+function sheet(st,msg){
+ const el=$('#sheet');el.hidden=false;el.onclick=e=>{if(e.target===el&&st!=='load')close()};
+ const img=cur.img?`<img src="${cur.img}" alt="รูปอาหาร">`:'';
+ if(st==='pre')el.innerHTML=`<div><h1>วิเคราะห์อาหาร</h1>${img}<label for="note" style="margin-top:0">บอกเพิ่มเติม (ไม่บังคับ)</label><input id="note" type="text" placeholder="เช่น ข้าวครึ่งจาน, ไม่ใส่น้ำตาล"><button class="btn" id="go">วิเคราะห์แคลอรี่</button><button class="btn g" id="cx">ยกเลิก</button></div>`;
+ if(st==='load')el.innerHTML=`<div style="text-align:center"><div class="spin"></div><div>กำลังวิเคราะห์…</div></div>`;
+ if(st==='res')el.innerHTML=`<div><h1>${cur.img?'ผลวิเคราะห์':'เพิ่มมื้อเอง'}</h1>${img}${msg?`<div class="sub" style="margin-bottom:10px">${esc(msg)}</div>`:''}<div id="its"></div><button class="link" id="add" style="margin:0 0 4px">+ เพิ่มรายการ</button><div class="tot"><span>รวม</span><span class="num"><span id="tot">0</span> <small style="font-size:14px">kcal</small></span></div><button class="btn" id="sv">บันทึกมื้อนี้</button><button class="btn g" id="cx">ยกเลิก</button></div>`;
+ if($('#cx'))$('#cx').onclick=close;
+ if(st==='pre')$('#go').onclick=()=>analyze($('#note').value.trim());
+ if(st==='res')items();
+}
+function items(){
+ const box=$('#its');box.innerHTML=cur.items.map((it,i)=>`<div class="it"><input type="text" data-n="${i}" value="${esc(it.name)}" placeholder="ชื่ออาหาร" aria-label="ชื่ออาหาร"><input type="number" inputmode="numeric" data-k="${i}" value="${Math.round(it.kcal)}" aria-label="kcal"><button data-r="${i}" aria-label="ลบรายการ" style="color:var(--mut);font-size:20px">×</button>${it.portion?`<small>${esc(it.portion)}</small>`:''}</div>`).join('');
+ const tot=()=>$('#tot').textContent=fmt(cur.items.reduce((s,i)=>s+(+i.kcal||0),0));tot();
+ box.querySelectorAll('[data-n]').forEach(e=>e.oninput=()=>cur.items[e.dataset.n].name=e.value);
+ box.querySelectorAll('[data-k]').forEach(e=>e.oninput=()=>{cur.items[e.dataset.k].kcal=+e.value||0;tot()});
+ box.querySelectorAll('[data-r]').forEach(e=>e.onclick=()=>{cur.items.splice(e.dataset.r,1);items()});
+ $('#add').onclick=()=>{cur.items.push({name:'',kcal:0});items()};
+ $('#sv').onclick=()=>{const it=cur.items.filter(i=>i.name||i.kcal);if(!it.length){toast('ยังไม่มีรายการ');return}
+  S.meals.push({id:Date.now(),ts:Date.now(),name:it.map(i=>i.name||'อาหาร').join(', '),kcal:it.reduce((s,i)=>s+(+i.kcal||0),0)});save();close();rToday();toast('บันทึกแล้ว')};
+}
+async function analyze(note){
+ sheet('load');
+ const prompt=`วิเคราะห์อาหารในรูปและประมาณแคลอรี่ของแต่ละรายการ ตอบเป็น JSON เท่านั้น รูปแบบ {"items":[{"name":"ชื่ออาหารภาษาไทย","portion":"ปริมาณโดยประมาณ","kcal":ตัวเลข}],"note":"หมายเหตุสั้นๆ ถ้ามี"} ใช้ค่ากลางที่เป็นไปได้มากที่สุด ถ้าไม่ใช่อาหารให้ items เป็น []${note?' ข้อมูลเพิ่มเติมจากผู้ใช้: '+note:''}`;
+ try{
+  const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(S.model)}:generateContent?key=${encodeURIComponent(S.key)}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt},{inline_data:{mime_type:'image/jpeg',data:cur.img.split(',')[1]}}]}],generationConfig:{responseMimeType:'application/json',temperature:.2}})});
+  const j=await r.json();
+  if(!r.ok)throw new Error(r.status===429?'ใช้โควตาฟรีหมดชั่วคราว ลองใหม่ภายหลัง':r.status===404?'ไม่พบโมเดล ตรวจชื่อในตั้งค่า':(j.error&&j.error.message)||'เกิดข้อผิดพลาด '+r.status);
+  const txt=j.candidates[0].content.parts.map(p=>p.text||'').join('').replace(/```json|```/g,'').trim(),o=JSON.parse(txt);
+  cur.items=(o.items||[]).map(i=>({name:i.name||'',portion:i.portion||'',kcal:+i.kcal||0}));
+  if(!cur.items.length)cur.items=[{name:'',kcal:0}];
+  sheet('res',o.note||'ตรวจและแก้ตัวเลขได้ก่อนบันทึก')
+ }catch(e){sheet('pre');toast(String(e.message||e).slice(0,120))}
+}
+go('today');
+</script>
+</body>
+</html>
